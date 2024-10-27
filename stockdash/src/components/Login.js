@@ -12,10 +12,9 @@ function Login() {
     };
 
     return (
-
-        <Container className="login-container" style={{maxWidth:'400px', marginTop: '40px'}}>
-
-        </Container>
+    
+        <container className="login-container" style={{maxWidth:'400px', marginTop: '40px'}}>
+        </container>
 
 
 

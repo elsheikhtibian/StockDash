@@ -7,12 +7,13 @@ import CreateAccountPage from './components/CreateAccount';
 function App() {
   return (
     <Router>
-      <div className="App">
+      <app className="App">
         <Routes>
           <Route path="/3000/login" element={<LoginPage />} />
           <Route path="/3000/create-account" element={<CreateAccountPage />} />
         </Routes>
-      </div>
+        <CreateAccountPage />
+      </app>
     </Router>
   );
 }
