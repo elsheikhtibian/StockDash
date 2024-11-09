@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="wrapper">
-    <form action="#">
+    <form onsubmit="handleLogin(event)">
       <h2>Stock Dash</h2>
       <h3>All your stocks in one place.</h3>
       <div class="input-field">
@@ -32,5 +32,24 @@
       </div>
     </form>
   </div>
+
+  <script>
+    // Function to handle form submission
+    function handleLogin(event) {
+      event.preventDefault(); // Prevent form from refreshing the page
+
+      // Get the input values
+      const email = document.querySelector('input[type="text"]').value;
+      const password = document.querySelector('input[type="password"]').value;
+
+      // Simple validation check (ensure both fields are filled)
+      if (email && password) {
+        // Redirect to the dashboard index.html, adjusting for src folder
+        window.location.href = '../dashboard/index.html'; // Relative path to go from src/login to src/dashboard
+      } else {
+        alert('Please fill in both email and password.');
+      }
+    }
+  </script>
 </body>
 </html>
