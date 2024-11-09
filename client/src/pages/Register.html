@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Stock Dash</title>
+  <link rel="stylesheet" href="LoginPage.css">
+</head>
+<body>
+  <div class="wrapper">
+    <form action="#" method="POST">
+      <h2>Register</h2>
+      <h3>Join Stock Dash</h3>
+      
+      <!-- First Name -->
+      <div class="input-field">
+        <input type="text" name="first_name" required>
+        <label>First Name</label>
+      </div>
+
+      <!-- Last Name -->
+      <div class="input-field">
+        <input type="text" name="last_name" required>
+        <label>Last Name</label>
+      </div>
+
+      <!-- Email -->
+      <div class="input-field">
+        <input type="email" name="email" required>
+        <label>Enter your email</label>
+      </div>
+
+      <!-- Password -->
+      <div class="input-field">
+        <input type="password" name="password" required>
+        <label>Enter your password</label>
+      </div>
+
+      <!-- Re-enter Password -->
+      <div class="input-field">
+        <input type="password" name="confirm_password" required>
+        <label>Re-enter your password</label>
+      </div>
+
+      <!-- Security Question -->
+      <div class="input-field">
+        <select name="security_question" required>
+          
+          <option value="first_pet">What was the name of your first pet?</option>
+          <option value="mother_maiden">What is your mother's maiden name?</option>
+          <option value="city_of_birth">What city were you born in?</option>
+        </select>
+        <label>Security Question</label>
+      </div>
+
+      <!-- Security Answer -->
+      <div class="input-field">
+        <input type="text" name="security_answer" required>
+        <label>Security Answer</label>
+      </div>
+
+      <button type="submit">Register</button>
+      <div class="register">
+        <p>Already have an account? <a href="login.html">Login</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

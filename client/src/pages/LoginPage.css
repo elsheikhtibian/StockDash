@@ -141,3 +141,36 @@ button:hover {
   margin-top: 30px;
   color: #fff;
 }
+
+
+/* Adjusting the styles for the security question dropdown */
+.input-field select {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #fff;
+  border-bottom: 2px solid #ccc;
+  padding: 5px 0;  /* Added padding for spacing */
+}
+
+/* Adjusting the label positioning for the select field */
+.input-field label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.15s ease;
+}
+
+/* Ensuring the label moves up when the select field is in focus or has a valid value */
+.input-field select:focus~label,
+.input-field select:valid~label {
+  font-size: 0.8rem;
+  top: 10px;
+  transform: translateY(-120%);
+}

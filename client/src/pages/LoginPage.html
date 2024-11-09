@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glassmorphism Login Form | CodingNepal</title>
+  <title>Glassmorphism Login Form | Stock Dash</title>
   <link rel="stylesheet" href="LoginPage.css">
 </head>
 <body>
   <div class="wrapper">
-    <form onsubmit="handleLogin(event)">
+    <form action="register.html"> <!-- Redirects to register.html -->
       <h2>Stock Dash</h2>
       <h3>All your stocks in one place.</h3>
+      
       <div class="input-field">
         <input type="text" required>
         <label>Enter your email</label>
@@ -28,28 +29,9 @@
       </div>
       <button type="submit">Log In</button>
       <div class="register">
-        <p>Don't have an account? <a href="#">Register</a></p>
+        <p>Don't have an account? <a href="register.html">Register</a></p> <!-- Link to register page -->
       </div>
     </form>
   </div>
-
-  <script>
-    // Function to handle form submission
-    function handleLogin(event) {
-      event.preventDefault(); // Prevent form from refreshing the page
-
-      // Get the input values
-      const email = document.querySelector('input[type="text"]').value;
-      const password = document.querySelector('input[type="password"]').value;
-
-      // Simple validation check (ensure both fields are filled)
-      if (email && password) {
-        // Redirect to the dashboard index.html, adjusting for src folder
-        window.location.href = '../dashboard/index.html'; // Relative path to go from src/login to src/dashboard
-      } else {
-        alert('Please fill in both email and password.');
-      }
-    }
-  </script>
 </body>
 </html>
