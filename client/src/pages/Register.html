@@ -1,48 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Sets character encoding and viewport for responsive design -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register | Stock Dash</title>
+  <!-- Link to external CSS file for styling the registration page -->
   <link rel="stylesheet" href="LoginPage.css">
 </head>
 <body>
+  <!-- Wrapper div to contain and style the registration form -->
   <div class="wrapper">
+    <!-- Form to collect user details for registration; submits via POST method -->
     <form action="../dashboard/index.html" method="POST">
+      <!-- Title and subtitle of the registration form -->
       <h2>Register</h2>
       <h3>Join Stock Dash</h3>
       
-      <!-- First Name -->
+      <!-- Input field for the user's first name -->
       <div class="input-field">
         <input type="text" name="first_name" required>
         <label>First Name</label>
       </div>
 
-      <!-- Last Name -->
+      <!-- Input field for the user's last name -->
       <div class="input-field">
         <input type="text" name="last_name" required>
         <label>Last Name</label>
       </div>
 
-      <!-- Email -->
+      <!-- Input field for the user's email -->
       <div class="input-field">
         <input type="email" name="email" required>
         <label>Enter your email</label>
       </div>
 
-      <!-- Password -->
+      <!-- Input field for the user's password -->
       <div class="input-field">
         <input type="password" name="password" required>
         <label>Enter your password</label>
       </div>
 
-      <!-- Re-enter Password -->
+      <!-- Input field to confirm the user's password -->
       <div class="input-field">
         <input type="password" name="confirm_password" required>
         <label>Re-enter your password</label>
       </div>
 
-      <!-- Security Question -->
+      <!-- Dropdown menu for selecting a security question -->
       <div class="input-field">
         <select name="security_question" required>
           <option value="first_pet">What was the name of your first pet?</option>
@@ -52,13 +57,16 @@
         <label>Security Question</label>
       </div>
 
-      <!-- Security Answer -->
+      <!-- Input field for the user's answer to the security question -->
       <div class="input-field">
         <input type="text" name="security_answer" required>
         <label>Security Answer</label>
       </div>
 
+      <!-- Submit button to complete the registration process -->
       <button type="submit">Register</button>
+      
+      <!-- Link to login page if the user already has an account -->
       <div class="register">
         <p>Already have an account? <a href="LoginPage.html">Login</a></p>
       </div>

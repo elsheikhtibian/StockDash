@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Specifies character encoding and viewport settings for responsive design -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glassmorphism Login Form | Stock Dash</title>
+  <!-- Link to external CSS for styling the login page -->
   <link rel="stylesheet" href="LoginPage.css">
 </head>
 <body>
+  <!-- Wrapper div to contain and style the login form -->
   <div class="wrapper">
-    <form action="register.html"> <!-- Redirects to register.html -->
+    <!-- Form submission redirects to register.html for demonstration -->
+    <form action="register.html">
+      <!-- Title and subtitle of the login form -->
       <h2>Stock Dash</h2>
       <h3>All your stocks in one place.</h3>
       
+      <!-- Input field for the user's email -->
       <div class="input-field">
         <input type="text" required>
         <label>Enter your email</label>
       </div>
+
+      <!-- Input field for the user's password -->
       <div class="input-field">
         <input type="password" required>
         <label>Enter your password</label>
       </div>
+
+      <!-- Section with a 'Remember me' checkbox and 'Forgot password' link -->
       <div class="forget">
         <label for="remember">
           <input type="checkbox" id="remember">
           <p>Remember me</p>
         </label>
-        <a href="#">Forgot password?</a>
+        <a href="#">Forgot password?</a> <!-- Link to reset password (to be implemented) -->
       </div>
+
+      <!-- Submit button for logging in -->
       <button type="submit">Log In</button>
+
+      <!-- Link to the register page for new users -->
       <div class="register">
-        <p>Don't have an account? <a href="register.html">Register</a></p> <!-- Link to register page -->
+        <p>Don't have an account? <a href="register.html">Register</a></p>
       </div>
     </form>
   </div>
