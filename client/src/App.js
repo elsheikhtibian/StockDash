@@ -1,24 +1,19 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import LoginPage from './components/Login';
-import CreateAccountPage from './components/CreateAccount';
-import Login from './components/Login';
-import CreateAccount from './components/CreateAccount';
-import StockDashboard from "./components/StockDashboard";
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage'; // Your register page component
+
 
 function App() {
   return (
     <Router>
-      <app className="App">
-        <Routes>
-          <Route path="/3000/login" element={<LoginPage />} />
-          <Route path="/3000/create-account" element={<CreateAccountPage />} />
-        </Routes>
-        <StockDashboard />
-      </app>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
     </Router>
   );
 }
+
 
 export default App;
