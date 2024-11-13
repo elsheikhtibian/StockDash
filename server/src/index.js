@@ -30,7 +30,25 @@ app.get('/api/testdb', async (req, res) => {
 
     }
 })
-const PORT = process.env.DB_PORT || 5001
+
+
+app.post('/api/register', async (req, res) => {
+    const { first_name, last_name, email, password, security_question, security_answer } = req.body
+    try {
+        const result = await pool.query(
+            'INSERT INTO users (first_name, last_name, email, password, security_question, security_answer) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [first_name, last_name, email, password, security_question, security_answer]
+        )
+        res.json({ success: true, user: result.rows[0] })
+
+    } catch (error) {
+        console.log("Error inserting user", error)
+        res.status(500).json({ success: false, error: 'Failed to register user' })
+
+    }
+})
+
+const PORT = process.env.SERVER_PORT || 5001
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
 })
