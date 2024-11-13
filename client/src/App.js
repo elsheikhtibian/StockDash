@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage'; // Your register page component
 
-
 function App() {
   return (
     <Router>
@@ -14,6 +13,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;
