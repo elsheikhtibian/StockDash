@@ -12,6 +12,9 @@ root.render(
   </React.StrictMode>
 );
 
+// Allow requests from http://localhost:3000
+
+
 
 
 // If you want to start measuring performance in your app, pass a function

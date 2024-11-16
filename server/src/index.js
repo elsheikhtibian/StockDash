@@ -1,9 +1,12 @@
 require('dotenv').config()
 const express = require('express')
+// Allow all origins (not secure)
 const { Pool } = require('pg')
 const app = express()
-
+const cors = require('cors');
+app.use(cors({ origin: '*' }));
 app.use(express.json())
+
 
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -36,7 +39,7 @@ app.post('/api/register', async (req, res) => {
     const { first_name, last_name, email, password, security_question, security_answer } = req.body
     try {
         const result = await pool.query(
-            'INSERT INTO users (first_name, last_name, email, password, security_question, security_answer) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            'INSERT INTO "public"."Users" (first_name, last_name, email, password, security_question, security_answer) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
             [first_name, last_name, email, password, security_question, security_answer]
         )
         res.json({ success: true, user: result.rows[0] })
@@ -48,7 +51,7 @@ app.post('/api/register', async (req, res) => {
     }
 })
 
-const PORT = process.env.SERVER_PORT || 5001
+const PORT = process.env.SERVER_PORT || 5002
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
 })

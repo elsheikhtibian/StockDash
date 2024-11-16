@@ -5,10 +5,12 @@ import RegisterPage from './pages/Register'; // Your register page component
 
 function App() {
   return (
+
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/" element={<RegisterPage />} />
+
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );
