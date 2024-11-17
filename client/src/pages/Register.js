@@ -87,7 +87,7 @@ function RegisterPage() {
 
         <div className="input-field">
           <select name="security_question" value={formData.security_question} onChange={handleChange} required>
-            <option value="">Select a security question</option> {/* Placeholder option */}
+
             <option value="first_pet">What was the name of your first pet?</option>
             <option value="mother_maiden">What is your mother's maiden name?</option>
             <option value="city_of_birth">What city were you born in?</option>
@@ -104,7 +104,7 @@ function RegisterPage() {
         <button type="submit">Register</button>
 
         <div className="register">
-          <p>Already have an account? <Link to="/">Login</Link></p>
+          <p>Already have an account? <Link to="/login">Login</Link></p>
         </div>
       </form>
     </div>

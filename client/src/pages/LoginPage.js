@@ -21,14 +21,6 @@ function LoginPage() {
           <label>Enter your password</label>
         </div>
 
-        {/* Remember me checkbox and forgot password link */}
-        <div className="forget">
-          <label htmlFor="remember">
-            <input type="checkbox" id="remember" />
-            <p>Remember me</p>
-          </label>
-          <a href="#">Forgot password?</a>
-        </div>
 
         {/* Login button */}
         <button type="submit">Log In</button>
@@ -36,7 +28,7 @@ function LoginPage() {
         {/* Register link (using React Router's Link component) */}
         <div className="register">
           <p>
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/">Register</Link>
           </p>
         </div>
       </form>
