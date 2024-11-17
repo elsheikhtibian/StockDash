@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
+import logo from './logo.png';  // Import the logo image
+
 
 function LoginPage() {
   const navigate = useNavigate()
@@ -56,45 +58,49 @@ function LoginPage() {
 
   return (
     <div className="wrapper">
-      <form onSubmit={handleSubmit}>
-        <h2>Stock Dash</h2>
-        <h3>All your stocks in one place.</h3>
-
-        {/* Email input field */}
-        <div className="input-field">
-          <input
-            type="text"
-            name="email"
-            onChange={handleChange}
-            required
-            value={formData.email}
-          />
-          <label>Enter your email</label>
+      <form onSubmit={handleSubmit}> {/* Action should ideally be replaced by React Router for navigation */}
+        <div className="header">
+          {/* Logo */}
+          <img src={logo} alt="Stock Dash Logo" className="logo" />
+          <h2>Stock Dash</h2>
+          <h3>All your stocks in one place.</h3>
         </div>
 
-        {/* Password input field */}
-        <div className="input-field">
-          <input
-            type="password"
-            name="password"
-            onChange={handleChange}
-            required
-            value={formData.password}
-          />
-          <label>Enter your password</label>
-        </div>
+        {/* Login form */}
+        <form action="/register">
+          <div className="input-field">
+            <input
+              type="text"
+              name="email"
+              onChange={handleChange}
+              required
+              value={formData.email}
+            />
+            <label>Enter your email</label>
+          </div>
 
-        {/* Login button */}
-        <button type="submit">Log In</button>
+          <div className="input-field">
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              required
+              value={formData.password}
+            />
+            <label>Enter your password</label>
+          </div>
 
-        {/* Register link (using React Router's Link component) */}
-        <div className="register">
-          <p>
-            Don't have an account? <Link to="/">Register</Link>
-          </p>
-        </div>
-      </form>
-    </div>
+
+          {/* Login button */}
+          <button type="submit">Log In</button>
+
+          <div className="register">
+            <p>
+              Don't have an account? <Link to="/">Register</Link>
+            </p>
+          </div>
+        </form>
+    </div >
   );
 }
 
