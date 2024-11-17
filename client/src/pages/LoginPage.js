@@ -58,7 +58,7 @@ function LoginPage() {
 
   return (
     <div className="wrapper">
-      <form onSubmit={handleSubmit}> {/* Action should ideally be replaced by React Router for navigation */}
+      <form onSubmit={handleSubmit}> {/* Form for login */}
         <div className="header">
           {/* Logo */}
           <img src={logo} alt="Stock Dash Logo" className="logo" />
@@ -66,42 +66,41 @@ function LoginPage() {
           <h3>All your stocks in one place.</h3>
         </div>
 
-        {/* Login form */}
-        <form action="/register">
-          <div className="input-field">
-            <input
-              type="text"
-              name="email"
-              onChange={handleChange}
-              required
-              value={formData.email}
-            />
-            <label>Enter your email</label>
-          </div>
+        {/* Login form inputs */}
+        <div className="input-field">
+          <input
+            type="text"
+            name="email"
+            onChange={handleChange}
+            required
+            value={formData.email}
+          />
+          <label>Enter your email</label>
+        </div>
 
-          <div className="input-field">
-            <input
-              type="password"
-              name="password"
-              onChange={handleChange}
-              required
-              value={formData.password}
-            />
-            <label>Enter your password</label>
-          </div>
+        <div className="input-field">
+          <input
+            type="password"
+            name="password"
+            onChange={handleChange}
+            required
+            value={formData.password}
+          />
+          <label>Enter your password</label>
+        </div>
 
+        {/* Login button */}
+        <button type="submit">Log In</button>
 
-          {/* Login button */}
-          <button type="submit">Log In</button>
-
-          <div className="register">
-            <p>
-              Don't have an account? <Link to="/">Register</Link>
-            </p>
-          </div>
-        </form>
-    </div >
+        <div className="register">
+          <p>
+            Don't have an account? <Link to="/">Register</Link>
+          </p>
+        </div>
+      </form>
+    </div>
   );
+
 }
 
 export default LoginPage;
