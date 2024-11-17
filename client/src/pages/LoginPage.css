@@ -49,10 +49,15 @@ form {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: 2.5em !important;  /* Force the font size change */
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  color: #fff;
   margin-bottom: 20px;
-  color: #fff !important;
 }
+
+
+
 
 .header {
   color: #fff;
@@ -61,10 +66,14 @@ h2 {
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 1.5rem!important;  /* Smaller than 0.5rem */
   margin-bottom: 20px;
-  color: #fff;
+  color: #fff; /* Keeps the text white */
+  font-family: 'Playfair Display', serif; /* Keeps the sophisticated font */
+  font-weight: 400; /* Lighter weight for the subtitle */
 }
+
+
 
 /* Logo styling */
 .logo {
