@@ -1,16 +1,17 @@
 
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Make sure this path is correct or adjust it based on your structure
 
 function RegisterPage() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
     email: '',
     password: '',
     confirm_password: '',
-    security_question: 'first_pet',
+    security_question: '',
     security_answer: ''
   })
 
@@ -29,6 +30,7 @@ function RegisterPage() {
       alert('Passwords do not match.')
       return;
     }
+
     try {
       const response = await fetch('http://localhost:5002/api/register', {
         method: 'POST',
@@ -38,6 +40,7 @@ function RegisterPage() {
       const result = await response.json()
       if (result.success) {
         alert('Registration Successful')
+        navigate('/dashboard')
       }
       else {
         alert('Registration Failed')
@@ -84,12 +87,14 @@ function RegisterPage() {
 
         <div className="input-field">
           <select name="security_question" value={formData.security_question} onChange={handleChange} required>
+            <option value="">Select a security question</option> {/* Placeholder option */}
             <option value="first_pet">What was the name of your first pet?</option>
             <option value="mother_maiden">What is your mother's maiden name?</option>
             <option value="city_of_birth">What city were you born in?</option>
           </select>
           <label>Security Question</label>
         </div>
+
 
         <div className="input-field">
           <input type="text" name="security_answer" value={formData.security_answer} onChange={handleChange} required />
