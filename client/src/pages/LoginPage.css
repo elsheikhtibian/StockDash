@@ -49,7 +49,7 @@ form {
 }
 
 h2 {
-  font-size: 2.5em !important;  /* Force the font size change */
+  font-size: 2em !important;  /* Force the font size change */
   font-family: 'Playfair Display', serif;
   font-weight: 800;
   color: #fff;
