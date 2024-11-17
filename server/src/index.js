@@ -38,6 +38,7 @@ app.get('/api/testdb', async (req, res) => {
 app.post('/api/register', async (req, res) => {
     const { first_name, last_name, email, password, security_question, security_answer } = req.body
     try {
+        console.log("first_name", first_name)
         const result = await pool.query(
             'INSERT INTO "public"."Users" (first_name, last_name, email, password, security_question, security_answer) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
             [first_name, last_name, email, password, security_question, security_answer]

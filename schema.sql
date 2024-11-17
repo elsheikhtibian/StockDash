@@ -66,7 +66,6 @@ CREATE TABLE public."Users" (
     user_id integer NOT NULL,
     first_name character varying DEFAULT ''::character varying NOT NULL,
     last_name character varying DEFAULT ''::character varying NOT NULL,
-    user_name character varying DEFAULT ''::character varying NOT NULL,
     password character varying DEFAULT ''::character varying NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     security_question character varying(255),
@@ -142,14 +141,6 @@ ALTER TABLE ONLY public."Users"
 
 ALTER TABLE ONLY public."Stocks"
     ADD CONSTRAINT unique_stock_ticker UNIQUE (stock_ticker);
-
-
---
--- Name: Users unique_username; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Users"
-    ADD CONSTRAINT unique_username UNIQUE (user_name);
 
 
 --
