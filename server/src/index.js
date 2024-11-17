@@ -52,6 +52,29 @@ app.post('/api/register', async (req, res) => {
     }
 })
 
+app.post('/api/login', async (req, res) => {
+    const { email, password } = req.body
+    try {
+
+        const result = await pool.query(
+            'SELECT * FROM "public"."Users" WHERE EMAIL = $1 AND PASSWORD = $2',
+            [email, password]
+        )
+
+        if (result.rows.length === 0) {
+            return res.status(401).json({ success: 'false', error: 'Invalid credentials' })
+            //alert('Invalid Credentials')
+        }
+        res.json({ success: true, user: { email: FormData.email, name: FormData.name } })
+
+
+    } catch (error) {
+        console.error("Error retrieving user data", error)
+        res.status(500).json({ success: false, error: 'Failed to login' })
+
+    }
+})
+
 const PORT = process.env.SERVER_PORT || 5002
 app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`)
