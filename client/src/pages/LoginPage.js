@@ -3,7 +3,6 @@ import './LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from './logo.png';  // Import the logo image
 
-
 function LoginPage() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
@@ -32,20 +31,19 @@ function LoginPage() {
       });
       if (!response.ok) {
         if (response.status === 401) {
-          console.log('Login Failed: Invalid Credentials')
-          alert('Invalid Credentials')
+          console.log('Login Failed: Invalid Credentials');
+          alert('Invalid Credentials');
         } else {
-          console.log(`HTTP ERROR: ${response.status}`)
+          console.log(`HTTP ERROR: ${response.status}`);
         }
-        return
+        return;
       }
-
-
 
       const result = await response.json();
       if (result.success) {
         console.log('Login Successful');
-        navigate('/dashboard')
+        // Redirect to dashboard (index.html) after successful login
+        navigate('/dashboard/index.html'); // Or '/dashboard/index.html' if needed
       } else {
         console.log('Login Failed');
       }
@@ -100,7 +98,6 @@ function LoginPage() {
       </form>
     </div>
   );
-
 }
 
 export default LoginPage;
