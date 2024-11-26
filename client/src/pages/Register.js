@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './RegisterPage.css'; // Make sure this path is correct or adjust it based on your structure
-import logo from './logo.png'; // Import the logo image
+import logo from '../assets/img/logo.png'; // Import the logo image
 
 function RegisterPage() {
   const navigate = useNavigate();
