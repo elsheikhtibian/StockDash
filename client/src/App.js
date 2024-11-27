@@ -5,7 +5,7 @@ import RegisterPage from './pages/Register'; // Your register page component
 import Portfolio from './pages/Portfolio';
 import Watchlist from './pages/Watchlist';
 import Dashboard from './pages/Dashboard';
-import Navbar from "./Navbar"
+import Navbar from "./components/Navbar"
 
 function App() {
   return (
@@ -21,6 +21,8 @@ function App() {
         </Routes>
       </div>
     </>
+
+    // Previous router config
     // <Router>
     //   <Routes>
     //     <Route path="/" element={<RegisterPage />} />
