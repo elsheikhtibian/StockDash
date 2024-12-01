@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles.css';
 import Markets from "../components/Markets"
 
 function Dashboard() {

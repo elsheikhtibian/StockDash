@@ -61,7 +61,7 @@ function LoginPage() {
           {/* Logo */}
           <img src={logo} alt="Stock Dash Logo" className="logo" />
           <h2>Stock Dash</h2>
-          <h3>All your stocks in one place.</h3>
+          <h3 className="h3">All your stocks in one place.</h3>
         </div>
 
         {/* Login form inputs */}
@@ -88,7 +88,7 @@ function LoginPage() {
         </div>
 
         {/* Login button */}
-        <button type="submit">Log In</button>
+        <button type="submit" className="button">Log In</button>
 
         <div className="register">
           <p>

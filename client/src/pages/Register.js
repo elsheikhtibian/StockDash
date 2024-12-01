@@ -59,7 +59,7 @@ function RegisterPage() {
 
       <form onSubmit={handleSubmit} method="POST">
         <h2>Register</h2>
-        <h3>Join Stock Dash</h3>
+        <h3 className="h3">Join Stock Dash</h3>
 
         <div className="input-field">
           <input
@@ -141,7 +141,7 @@ function RegisterPage() {
           <label>Security Answer</label>
         </div>
 
-        <button type="submit">Register</button>
+        <button type="submit" className="button">Register</button>
 
         <div className="register">
           <p>

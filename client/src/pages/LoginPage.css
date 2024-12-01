@@ -20,7 +20,8 @@ form {
 }
 
 h2 {
-  font-size: 2em !important;  /* Force the font size change */
+  font-size: 2em !important;
+  /* Force the font size change */
   font-family: 'Playfair Display', serif;
   font-weight: 800;
   color: #fff;
@@ -33,12 +34,16 @@ h2 {
   margin-bottom: 20px;
 }
 
-h3 {
-  font-size: 1.5rem!important;  /* Smaller than 0.5rem */
+.h3 {
+  font-size: 1.5rem !important;
+  /* Smaller than 0.5rem */
   margin-bottom: 20px;
-  color: #fff; /* Keeps the text white */
-  font-family: 'Playfair Display', serif; /* Keeps the sophisticated font */
-  font-weight: 400; /* Lighter weight for the subtitle */
+  color: #fff;
+  /* Keeps the text white */
+  font-family: 'Playfair Display', serif;
+  /* Keeps the sophisticated font */
+  font-weight: 400;
+  /* Lighter weight for the subtitle */
 }
 
 
@@ -113,7 +118,7 @@ h3 {
   text-decoration: underline;
 }
 
-button {
+.button {
   background: #fff;
   color: #000;
   font-weight: 600;
