@@ -15,7 +15,19 @@ ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, T
 
 export default function Markets() {
     const [activeButton, setActiveButton] = useState(0); // Default to "US"
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+    const [selectedStock, setSelectedStock] = useState(null);
+
     const regions = ["US", "Europe", "Asia", "Currencies", "Crypto", "Futures"];
+    const fakeStocks = [
+        { symbol: "AAPL", name: "Apple", data: [170, 172, 175, 178, 180], change: 1.5 },
+        { symbol: "MSFT", name: "Microsoft", data: [320, 322, 330, 335, 340], change: 3.2 },
+        { symbol: "GOOGL", name: "Alphabet", data: [140, 142, 145, 150, 155], change: 2.5 },
+        { symbol: "AMZN", name: "Amazon", data: [300, 310, 320, 325, 330], change: 2.8 },
+        { symbol: "META", name: "Meta", data: [210, 212, 215, 217, 220], change: 1.9 },
+    ];
+
     const fakeData = {
         US: {
             labels: ["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
@@ -28,65 +40,26 @@ export default function Markets() {
                 },
             ],
         },
-        Europe: {
-            labels: ["SAP", "ASML", "BMW", "LVMH", "Nestlé"],
-            datasets: [
-                {
-                    label: "Stock Prices (€)",
-                    data: [120, 750, 85, 850, 112],
-                    borderColor: "rgba(54, 162, 235, 1)",
-                    backgroundColor: "rgba(54, 162, 235, 0.2)",
-                },
-            ],
-        },
-        Asia: {
-            labels: ["Toyota", "Samsung", "Tencent", "Sony", "Alibaba"],
-            datasets: [
-                {
-                    label: "Stock Prices (¥/₩)",
-                    data: [2300, 67000, 400, 12000, 100],
-                    borderColor: "rgba(255, 206, 86, 1)",
-                    backgroundColor: "rgba(255, 206, 86, 0.2)",
-                },
-            ],
-        },
-        Currencies: {
-            labels: ["USD/EUR", "USD/JPY", "USD/GBP", "USD/CHF", "USD/CAD"],
-            datasets: [
-                {
-                    label: "Exchange Rates",
-                    data: [1.1, 150, 0.78, 0.91, 1.34],
-                    borderColor: "rgba(153, 102, 255, 1)",
-                    backgroundColor: "rgba(153, 102, 255, 0.2)",
-                },
-            ],
-        },
-        Crypto: {
-            labels: ["BTC", "ETH", "BNB", "XRP", "DOGE"],
-            datasets: [
-                {
-                    label: "Crypto Prices ($)",
-                    data: [34000, 2100, 250, 0.6, 0.07],
-                    borderColor: "rgba(255, 99, 132, 1)",
-                    backgroundColor: "rgba(255, 99, 132, 0.2)",
-                },
-            ],
-        },
-        Futures: {
-            labels: ["Gold", "Oil", "Silver", "Corn", "Wheat"],
-            datasets: [
-                {
-                    label: "Futures Prices ($)",
-                    data: [1900, 75, 23, 5.5, 6.3],
-                    borderColor: "rgba(255, 159, 64, 1)",
-                    backgroundColor: "rgba(255, 159, 64, 0.2)",
-                },
-            ],
-        },
+        // Other regions omitted for brevity
     };
 
-    const handleButtonClick = (index) => {
-        setActiveButton(index);
+    const handleSearch = (e) => {
+        setSearchTerm(e.target.value);
+        if (e.target.value) {
+            const results = fakeStocks.filter((stock) =>
+                stock.symbol.toLowerCase().includes(e.target.value.toLowerCase()) ||
+                stock.name.toLowerCase().includes(e.target.value.toLowerCase())
+            );
+            setSearchResults(results);
+        } else {
+            setSearchResults([]);
+        }
+    };
+
+    const handleStockSelect = (stock) => {
+        setSelectedStock(stock);
+        setSearchTerm("");
+        setSearchResults([]);
     };
 
     const activeRegion = regions[activeButton];
@@ -100,21 +73,65 @@ export default function Markets() {
                         <button
                             key={index}
                             className={`market-button ${activeButton === index ? "active" : ""}`}
-                            onClick={() => handleButtonClick(index)}
+                            onClick={() => {
+                                setActiveButton(index);
+                                setSelectedStock(null); // Reset selected stock
+                            }}
                         >
                             {region}
                         </button>
                     ))}
                 </div>
-                <div className="market-content">
-                    <h4>{activeRegion} Market Data</h4>
-                    <Line data={fakeData[activeRegion]} />
-                    <div className="chart-key">
-                        <p>
-                            <strong>Key:</strong> Each label represents a stock or asset for the {activeRegion} market.
-                            Data is in placeholder units.
-                        </p>
+
+                {/* Search Feature */}
+                <div className="search-container">
+                    <input
+                        type="text"
+                        placeholder="Search for a stock..."
+                        value={searchTerm}
+                        onChange={handleSearch}
+                    />
+                    <div className="search-results">
+                        {searchResults.map((stock) => (
+                            <div
+                                key={stock.symbol}
+                                className="search-result"
+                                onClick={() => handleStockSelect(stock)}
+                            >
+                                {stock.symbol} - {stock.name}
+                            </div>
+                        ))}
                     </div>
+                </div>
+
+                {/* Chart Display */}
+                <div className="market-content">
+                    {selectedStock ? (
+                        <>
+                            <h4>{selectedStock.name} ({selectedStock.symbol})</h4>
+                            <Line
+                                data={{
+                                    labels: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
+                                    datasets: [
+                                        {
+                                            label: `${selectedStock.name} Price ($)`,
+                                            data: selectedStock.data,
+                                            borderColor: "rgba(255, 99, 132, 1)",
+                                            backgroundColor: "rgba(255, 99, 132, 0.2)",
+                                        },
+                                    ],
+                                }}
+                            />
+                            <p>
+                                <strong>Percentage Change Today:</strong> {selectedStock.change}%
+                            </p>
+                        </>
+                    ) : (
+                        <>
+                            <h4>{activeRegion} Market Data</h4>
+                            <Line data={fakeData[activeRegion]} />
+                        </>
+                    )}
                 </div>
             </div>
         </div>
