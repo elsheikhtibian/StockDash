@@ -1,38 +1,122 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
-// import axios from "axios";
-import NewsLink from './NewsLink';
+import React, { useState } from "react";
+import { Line } from "react-chartjs-2";
+import {
+    Chart as ChartJS,
+    LineElement,
+    PointElement,
+    LinearScale,
+    Title,
+    CategoryScale,
+    Tooltip,
+    Legend,
+} from "chart.js";
+
+ChartJS.register(LineElement, PointElement, LinearScale, Title, CategoryScale, Tooltip, Legend);
 
 export default function Markets() {
-    const [activeButton, setActiveButton] = useState(null); // State to track the active button
-    const [marketData, setMarketData] = useState(null); // Store market data
-    const [error, setError] = useState(null); // Handle API errors
-
-    const symbols = useMemo(() => ["DJI", "SPX", "IXIC", "RUT", "VIX"], []); // Market symbols
-
-    const handleButtonClick = (index) => {
-        setActiveButton(index); // Set the clicked button as active
+    const [activeButton, setActiveButton] = useState(0); // Default to "US"
+    const regions = ["US", "Europe", "Asia", "Currencies", "Crypto", "Futures"];
+    const fakeData = {
+        US: {
+            labels: ["AAPL", "MSFT", "GOOGL", "AMZN", "META"],
+            datasets: [
+                {
+                    label: "Stock Prices ($)",
+                    data: [175, 330, 145, 320, 215],
+                    borderColor: "rgba(75, 192, 192, 1)",
+                    backgroundColor: "rgba(75, 192, 192, 0.2)",
+                },
+            ],
+        },
+        Europe: {
+            labels: ["SAP", "ASML", "BMW", "LVMH", "Nestlé"],
+            datasets: [
+                {
+                    label: "Stock Prices (€)",
+                    data: [120, 750, 85, 850, 112],
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    backgroundColor: "rgba(54, 162, 235, 0.2)",
+                },
+            ],
+        },
+        Asia: {
+            labels: ["Toyota", "Samsung", "Tencent", "Sony", "Alibaba"],
+            datasets: [
+                {
+                    label: "Stock Prices (¥/₩)",
+                    data: [2300, 67000, 400, 12000, 100],
+                    borderColor: "rgba(255, 206, 86, 1)",
+                    backgroundColor: "rgba(255, 206, 86, 0.2)",
+                },
+            ],
+        },
+        Currencies: {
+            labels: ["USD/EUR", "USD/JPY", "USD/GBP", "USD/CHF", "USD/CAD"],
+            datasets: [
+                {
+                    label: "Exchange Rates",
+                    data: [1.1, 150, 0.78, 0.91, 1.34],
+                    borderColor: "rgba(153, 102, 255, 1)",
+                    backgroundColor: "rgba(153, 102, 255, 0.2)",
+                },
+            ],
+        },
+        Crypto: {
+            labels: ["BTC", "ETH", "BNB", "XRP", "DOGE"],
+            datasets: [
+                {
+                    label: "Crypto Prices ($)",
+                    data: [34000, 2100, 250, 0.6, 0.07],
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                },
+            ],
+        },
+        Futures: {
+            labels: ["Gold", "Oil", "Silver", "Corn", "Wheat"],
+            datasets: [
+                {
+                    label: "Futures Prices ($)",
+                    data: [1900, 75, 23, 5.5, 6.3],
+                    borderColor: "rgba(255, 159, 64, 1)",
+                    backgroundColor: "rgba(255, 159, 64, 0.2)",
+                },
+            ],
+        },
     };
 
-    return <markets className="markets">
-        <div>
-            <div className="market-container">
-                <h3>compare markets</h3>
-                <button key={0} className={activeButton === 0 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(0)}>US</button>
-                <button key={1} className={activeButton === 1 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(1)}>Europe</button>
-                <button key={2} className={activeButton === 2 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(2)}>Asia</button>
-                <button key={3} className={activeButton === 3 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(3)}>Currencies</button>
-                <button key={4} className={activeButton === 4 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(4)}>Crypto</button>
-                <button key={5} className={activeButton === 5 ? "market-button active" : "market-button"} onClick={() => handleButtonClick(5)}>Futures</button>
-                <h3>|</h3>
-                <NewsLink
-                    url="https://www.barrons.com/articles/stock-market-returns-rally-69c9852d"
-                    articleTitle="The S&P 500 Is Set for Back-to-Back 20% Gains. What History Says Happens Next."
-                    website="Barron's"
-                />
-            </div>
-            <div className="market-content">
-               
+    const handleButtonClick = (index) => {
+        setActiveButton(index);
+    };
+
+    const activeRegion = regions[activeButton];
+
+    return (
+        <div className="markets">
+            <div>
+                <div className="market-container">
+                    <h3>Compare Markets</h3>
+                    {regions.map((region, index) => (
+                        <button
+                            key={index}
+                            className={`market-button ${activeButton === index ? "active" : ""}`}
+                            onClick={() => handleButtonClick(index)}
+                        >
+                            {region}
+                        </button>
+                    ))}
+                </div>
+                <div className="market-content">
+                    <h4>{activeRegion} Market Data</h4>
+                    <Line data={fakeData[activeRegion]} />
+                    <div className="chart-key">
+                        <p>
+                            <strong>Key:</strong> Each label represents a stock or asset for the {activeRegion} market.
+                            Data is in placeholder units.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
-    </markets >
+    );
 }
